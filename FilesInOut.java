@@ -28,6 +28,7 @@ public class FilesInOut {
         // Finally, add code to read the filenames as arguments from the command line.
 
         System.out.println("You need to add your own code to do anything");
+        System.out.println("Test commit and push");
 
     } // main
 
