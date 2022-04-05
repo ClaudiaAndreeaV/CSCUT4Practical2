@@ -13,10 +13,19 @@ import java.lang.Number;
 public class UpperCaseV {
 
     public static void main(String[] args) throws FileNotFoundException
-    {
-     
-    	File input = new File(args[0]);   //creating two objects of the file class and
-    	File output = new File(args[1]); //reading the files names from the command line
+    {   
+    	File input;
+    	File output;  //creating two objects of the file class
+    	if(args[0].equals("-u"))  //checking for upper case flag
+    	{    
+    		 input = new File(args[1]);   
+        	 output = new File(args[2]); //reading the files names from the command line
+    	}
+    	else
+    	{
+          input = new File(args[0]);   
+    	  output = new File(args[1]); //reading the files names from the command line
+    	}
     	
     	Scanner scan = new Scanner(input); //creating an object of the scanner class
     	PrintWriter print = new PrintWriter(output); //creating an object of the printWriter class
@@ -27,13 +36,20 @@ public class UpperCaseV {
     		Scanner lineScanner = new Scanner(line);
 
     		String name = lineScanner.next();
-    		 name = name.toUpperCase();
+    		if(args[0].equals("-u"))
+    		  name = name.toUpperCase();
+    		else
+    		  name = name.substring(0,1).toUpperCase() + name.substring(1);
     		 String temp;
     		while (!lineScanner.hasNextInt())
     		{
     		     temp = lineScanner.next();
-    		  name = name + " " + temp.toUpperCase();
-    		} //changing the name to title case
+    		     if(args[0].equals("-u"))
+    		       name = name + " " + temp.toUpperCase();
+    		     else
+    		       name = name + " " + temp.substring(0,1).toUpperCase() + temp.substring(1); 
+    		    	 
+    		} //changing the name
 
             String date = lineScanner.next();
            date = date.substring(0,2) + "/" + date.substring(2,4) + "/" + date.substring(4); //converting into date format
