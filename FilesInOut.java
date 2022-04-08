@@ -12,22 +12,40 @@ import java.lang.Number;
  */
 public class FilesInOut {
 
-    public static void main(String[] args) {
-        // Replace this with statements to set the file name (input) and file name (output).
-        // Initially it will be easier to hardcode suitable file names.
+    public static void main(String[] args) throws FileNotFoundException
+    {
+     
+    	File input = new File(args[0]);   //creating two objects of the file class and
+    	File output = new File(args[1]); //reading the files names from the command line
+    	
+    	Scanner scan = new Scanner(input); //creating an object of the scanner class
+    	PrintWriter print = new PrintWriter(output); //creating an object of the printWriter class
+    	
+    	while(scan.hasNextLine()) //reading the input file line by line
+    	{
+    		String line = scan.nextLine();
+    		Scanner lineScanner = new Scanner(line);
 
-        // Set up a new Scanner to read the input file.
-        // Processing line by line would be sensible here.
-        // Initially, echo the text to System.out to check you are reading correctly.
-        // Then add code to modify the text to the output format.
+    		String name = lineScanner.next();
+    		 name = name.substring(0,1).toUpperCase() + name.substring(1);
+    		 String temp;
+    		while (!lineScanner.hasNextInt())
+    		{
+    		     temp = lineScanner.next();
+    		  name = name + " " + temp.substring(0,1).toUpperCase() + temp.substring(1);
+    		} //changing the name to title case
 
-        // Set up a new PrintWriter to write the output file.
-        // Add suitable code into the above processing (because you need to do this line by line also.
-        // That is, read a line, write a line, loop.
+            String date = lineScanner.next();
+           date = date.substring(0,2) + "/" + date.substring(2,4) + "/" + date.substring(4); //converting into date format
+    		
+            line = name + " " + date;
+    		print.println(line); //writing the modified data into the output file
+    		
+    		lineScanner.close();
+    	}
+    	scan.close();
+    	print.close();    	
 
-        // Finally, add code to read the filenames as arguments from the command line.
-
-        System.out.println("You need to add your own code to do anything");
 
     } // main
 
